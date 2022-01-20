@@ -23,37 +23,37 @@ class InspeckagePreferences(val context: Context) {
         val editor: SharedPreferences.Editor = prefs.edit()
         editor.putString(key, value)
         editor.apply()
-        Log.i(TAG, "putString: key=$key,value=$value")
+        Log.d(TAG, "putString: key=$key,value=$value")
     }
 
     fun putBoolean(key: String, value: Boolean) {
         val editor: SharedPreferences.Editor = prefs.edit()
         editor.putBoolean(key, value)
         editor.apply()
-        Log.i(TAG, "putBoolean: key=$key,value=$value")
+        Log.d(TAG, "putBoolean: key=$key,value=$value")
     }
 
     fun putInt(key: String, default: Int):Int {
         val result = prefs.getInt(key, default)
-        Log.i(TAG, "getInt: key=$key,result=$result")
+        Log.d(TAG, "getInt: key=$key,result=$result")
         return result
     }
 
     fun getString(key: String,default:String = ""): String {
         val result = prefs.getString(key, default) ?: ""
-        Log.i(TAG, "getString: key=$key,result=$result")
+        Log.d(TAG, "getString: key=$key,result=$result")
         return result
     }
 
     fun getBoolean(key: String, default:Boolean = false): Boolean {
         val result = prefs.getBoolean(key, default)
-        Log.i(TAG, "getBoolean: key=$key,result=$result")
+        Log.d(TAG, "getBoolean: key=$key,result=$result")
         return result
     }
 
     fun getInt(key: String,default: Int = -1): Int {
         val result = prefs.getInt(key, default)
-        Log.i(TAG, "getInt: key=$key,result=$result")
+        Log.d(TAG, "getInt: key=$key,result=$result")
         return result
     }
 

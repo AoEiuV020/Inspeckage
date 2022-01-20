@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
 import android.webkit.WebView;
 
 import java.lang.reflect.Field;
@@ -41,6 +42,7 @@ public class InspeckageReceiver extends BroadcastReceiver {
         if (activity != null) {
             String pkg = intent.getExtras().getString("package");
 
+            Log.i("inspeckage", "onReceive: pkg" + pkg + ",activity.getPackageName()="+activity.getPackageName());
             if (pkg.equals(activity.getPackageName())) {
 
 

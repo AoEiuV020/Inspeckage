@@ -618,6 +618,7 @@ public class WebServer extends fi.iki.elonen.NanoHTTPD {
         String value = parms.get("value");
 
         Intent intent = new Intent("mobi.acpm.inspeckage.INSPECKAGE_WEB");
+        intent.setPackage(mContext.getPackageName());
         intent.putExtra("package", mPrefs.getString(Config.SP_PACKAGE, ""));
         intent.putExtra("value", value);
         intent.putExtra("action", "clipboard");
@@ -1238,6 +1239,7 @@ public class WebServer extends fi.iki.elonen.NanoHTTPD {
     public void finishApp() {
 
         Intent intent = new Intent("mobi.acpm.inspeckage.INSPECKAGE_FILTER");
+        intent.setPackage(mContext.getPackageName());
         intent.putExtra("package", mPrefs.getString(Config.SP_PACKAGE, ""));
         intent.putExtra("action", "finish");
         mContext.sendBroadcast(intent, null);
@@ -1246,6 +1248,7 @@ public class WebServer extends fi.iki.elonen.NanoHTTPD {
     public void fileTree() {
 
         Intent intent = new Intent("mobi.acpm.inspeckage.INSPECKAGE_FILTER");
+        intent.setPackage(mContext.getPackageName());
         intent.putExtra("package", mPrefs.getString(Config.SP_PACKAGE, ""));
         intent.putExtra("action", "fileTree");
         mContext.sendBroadcast(intent, null);
@@ -1254,6 +1257,7 @@ public class WebServer extends fi.iki.elonen.NanoHTTPD {
     public void isRunning() {
 
         Intent intent = new Intent("mobi.acpm.inspeckage.INSPECKAGE_FILTER");
+        intent.setPackage(mContext.getPackageName());
         intent.putExtra("package", mPrefs.getString(Config.SP_PACKAGE, ""));
         intent.putExtra("action", "checkApp");
         mContext.sendBroadcast(intent, null);
@@ -1274,6 +1278,7 @@ public class WebServer extends fi.iki.elonen.NanoHTTPD {
         intent.putExtra("flags", flags);
         intent.putExtra("mimetype", mimetype);
         intent.putExtra("category", category);
+        intent.setPackage(mContext.getPackageName());
 
         if(mPrefs.getBoolean(Config.SP_APP_IS_RUNNING,false)){
             mContext.sendBroadcast(intent, null);
@@ -1357,6 +1362,7 @@ public class WebServer extends fi.iki.elonen.NanoHTTPD {
     public Response queryProvider(String uri) {
 
         Intent intent = new Intent("mobi.acpm.inspeckage.INSPECKAGE_FILTER");
+        intent.setPackage(mContext.getPackageName());
         intent.putExtra("package", mPrefs.getString(Config.SP_PACKAGE, ""));
         intent.putExtra("action", "query");
         intent.putExtra("uri", uri);
