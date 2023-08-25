@@ -154,43 +154,6 @@ public class HttpHook extends XC_MethodHook {
             Log.e(TAG, "initAllHooks: e="+e.getMessage() );
             Module.logError(e);
         }
-        try {
-            final Class<?> okHttpClientBuilder = findClass("okhttp3.OkHttpClient$Builder", loadPackageParam.classLoader);
-
-            if (okHttpClientBuilder == null) {
-                Log.w(TAG, "initAllHooks: okHttpClientBuilder == null");
-                return;
-            }
-            Log.i(TAG, "initAllHooks: findAndHookMethod okHttpClientBuilder->build");
-
-
-            XC_MethodHook xc_methodHook = new XC_MethodHook() {
-                @Override
-                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    Object thisObject = param.thisObject;
-
-                    if (thisObject.getClass().getName().equals("okhttp3.OkHttpClient$Builder")) {
-                        Log.i(TAG, "beforeHookedMethod okHttpClientBuilder addInterceptor = " + thisObject);
-                        OkHttpClient.Builder builder = (OkHttpClient.Builder) thisObject;
-                        builder.addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-                            @Override
-                            public void log(String message) {
-
-                                Log.i(TAG, "HttpLoggingInterceptor=" + message);
-                                XposedBridge.log(TAG + "OkHttpClient: " + message);
-                            }
-                        }));
-                    }
-
-
-                }
-            };
-            XposedBridge.hookAllConstructors(okHttpClientBuilder, xc_methodHook);
-            findAndHookMethod(okHttpClientBuilder, "build", xc_methodHook);
-        } catch (Error e) {
-            Log.e(TAG, "initAllHooks: e="+e.getMessage() );
-            Module.logError(e);
-        }
 
 
         try {
