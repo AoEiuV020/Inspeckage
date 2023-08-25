@@ -53,14 +53,15 @@ public class MainFragment extends Fragment {
     private InspeckagePreferences mPrefs;
     private PackageDetail pd;
 
-    @SuppressLint("ValidFragment")
-    public MainFragment(Activity act) {
-        mainActivity = act;
-        context = mainActivity.getApplicationContext();
-    }
-
     public MainFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mainActivity = activity;
+        context = mainActivity.getApplicationContext();
     }
 
     @Override
